@@ -50,8 +50,6 @@ export default {
     }
 
     .main-body {
-        /* background: url('../assets/bg.png');
-        background-size: cover; */
         height: 100%;
     }
 </style>
