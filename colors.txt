@@ -1,0 +1,48 @@
+#C25A7C 	Tulip Pink
+#CA226B 	Medium Violet Red
+#C12869 	Rogue Pink
+#C12267 	Burnt Pink
+#C25283 	Bashful Pink
+#C12283 	Dark Carnation Pink
+#B93B8F 	Plum
+#7E587E 	Viola Purple
+#571B7E 	Purple Iris
+#583759 	Plum Purple
+#4B0082 	Indigo
+#461B7E 	Purple Monster
+#4E387E 	Purple Haze
+#614051 	Eggplant
+#5E5A80 	Grape
+#6A287E 	Purple Jam
+#7D1B7E 	Dark Orchid
+#A74AC7 	Purple Flower
+#B048B5 	Medium Orchid
+#6C2DC7 	Purple Amethyst
+#842DCE 	Dark Violet
+#8D38C9 	Violet
+#7A5DC7 	Purple Sage Bush
+#7F38EC 	Lovely Purple
+#8E35EF 	Purple
+#893BFF 	Aztech Purple
+#8467D7 	Medium Purple
+#A23BEC 	Jasmine Purple
+#B041FF 	Purple Daffodil
+#C45AEC 	Tyrian Purple
+#9172EC 	Crocus Purple
+#9E7BFF 	Purple Mimosa
+#D462FF 	Heliotrope Purple
+#E238EC 	Crimson
+#C38EC7 	Purple Dragon
+#C8A2C8 	Lilac
+#E6A9EC 	Blush Pink
+#E0B0FF 	Mauve
+#C6AEC7 	Wisteria Purple
+#F9B7FF 	Blossom Pink
+#D2B9D3 	Thistle
+#E9CFEC 	Periwinkle
+#EBDDE2 	Lavender Pinocchio
+#E3E4FA 	Lavender blue
+#FDEEF4 	Pearl
+#FFF5EE 	SeaShell
+#FEFCFF 	Milk White
+#FFFFFF 	White

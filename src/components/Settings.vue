@@ -1,0 +1,233 @@
+<template>
+    <v-container>
+         <!-- <v-text>Background and theme settings</v-text> -->
+         <v-card>
+              <perfect-scrollbar class="container">
+             <v-card-title :style="headerStyle">Restructure Design to your own taste...</v-card-title>
+             <!-- design for users ability to Change font of question and title -->
+             <div class="font-area">
+                 <v-text :style="divTitles">Fonts</v-text>
+                 <v-divider />
+                 <v-select
+                    @change="changeQtnFont"
+                    item-value="fonts"
+                    item-text="fonts"
+                    :items="fonts"
+                    menu-props="auto"
+                    label="Change question font"
+                ></v-select>
+                 <v-select 
+                    label="Change Options font" 
+                    @change="changeOptionFont"
+                    item-value="fonts"
+                    item-text="fonts"
+                    :items="fonts"
+                    menu-props="auto"
+                 ></v-select>
+             </div>
+             <!-- design for users ability to Change background colors and effects -->
+             <div class="bg-area">
+                 <v-text :style="divTitles">Background</v-text>
+                 <v-divider />
+                 <v-select 
+                    label="Change Text Color" 
+                    @change="changeTextColor"
+                    item-value="colorCode"
+                    item-text="colorName"
+                    :items="colors"
+                    menu-props="auto"
+                 ></v-select>
+                <v-select 
+                    label="Change Background Color" 
+                    @change="changeBgColor"
+                    item-value="colorCode"
+                    item-text="colorName"
+                    :items="colors"
+                    menu-props="auto"
+                 ></v-select>
+             </div>
+              <!-- design for users ability to shuffle questions -->
+             <div class="qtn-area">
+                 <v-text :style="divTitles">Question</v-text>
+                 <v-spacer></v-spacer>
+                 <v-divider />
+                 <v-text :style="qtnAreaText">Shuffle Questions?</v-text>
+             </div>
+              </perfect-scrollbar>
+         </v-card>
+    </v-container>
+</template>
+
+<script>
+export default {
+    data() {
+        return {
+            fonts: [
+                'Andale Mono', 'Arial','Arial Bold', 'Arial Italic', 'Arial Bold Italic','Arial Black', 'Comic Sans MS',
+                'Comic Sans MS Bold','Courier New','Courier New Bold','Courier New Italic','Courier New Bold Italic',
+                'Georgia','Georgia Bold', 'Georgia Italic','Georgia Bold Italic' ,'Impact 	Lucida Console',
+                'Lucida Sans Unicode', 	'Marlett' ,	'Minion Web','Symbol' ,	'Times New Roman' ,	'Times New Roman Bold',
+                'Times New Roman Italic' ,'Times New Roman Bold Italic' ,	'Tahoma','Trebuchet MS' ,'Trebuchet MS Bold',
+                 'Trebuchet MS Italic','Trebuchet MS Bold Italic' 	,'Verdana' 	,'Verdana Bold',
+                'Verdana Italic' ,'Verdana Bold Italic' ,'Webdings'
+            ],
+            colors: [
+                {colorCode:  '#000000',colorName:  'Black'},{colorCode:  '#0C090A',colorName:  'Night'},{colorCode:  '#2C3539',colorName:  'Gunmetal'},
+                {colorCode:  '#2B1B17',colorName:  'Midnight'},{colorCode:  '#34282C',colorName:  'Charcoal'},{colorCode:  '#25383C',colorName:  'Dark Slate Grey'},
+                {colorCode:  '#3B3131',colorName:  'Oil'},{colorCode:  '#413839',colorName:  'Black Cat'},{colorCode:  '#3D3C3A',colorName:  'Iridium'},
+                {colorCode:  '#463E3F',colorName:  'Black Eel'},{colorCode:  '#4C4646',colorName:  'Black Cow'},{colorCode:  '#504A4B',colorName:  'Gray Wolf'},
+                {colorCode:  '#565051',colorName:  'Vampire Gray'},{colorCode:  '#5C5858',colorName:  'Gray Dolphin'},{colorCode:  '#625D5D',colorName:  'Carbon Gray'},
+                {colorCode:  '#666362',colorName:  'Ash Gray'},{colorCode:  '#6D6968',colorName:  'Cloudy Gray'},{colorCode:  '#726E6D',colorName:  'Smokey Gray'},
+                {colorCode:  '#736F6E',colorName:  'Gray'},{colorCode:  '#837E7C',colorName:  'Granite'},{colorCode:  '#848482',colorName:  ' 	Battleship Gray'},
+                {colorCode:  '#B6B6B4',colorName:  'Gray Cloud'},{colorCode:  '#D1D0CE',colorName:  'Gray Goose'},{colorCode:  '#E5E4E2',colorName:  'Platinum'},
+                {colorCode:  '#BCC6CC ',colorName:  'Metallic Silver'},{colorCode:  '#98AFC7',colorName:  'Blue Gray'},{colorCode:  '#6D7B8D',colorName:  'Light Slate Gray'},
+                {colorCode:  '#657383',colorName:  'Slate Gray'},{colorCode:  '#616D7E',colorName:  'Jet Gray'},{colorCode:  '#646D7E',colorName:  'Mist Blue'},
+                {colorCode:  '#566D7E',colorName:  'Marble Blue'},{colorCode:  '#737CA1',colorName:  'Slate Blue'},{colorCode:  '#4863A0',colorName:  'Steel Blue'},
+                {colorCode:  '#2B547E',colorName:  'Blue Jay'},{colorCode:  '#2B3856',colorName:  'Dark Slate Blue'},{colorCode:  '#151B54',colorName:  'Midnight Blue'},
+                {colorCode:  '#000080',colorName:  'Navy Blue'},{colorCode:  '#342D7E',colorName:  'Blue Whale'},{colorCode:  '#15317E',colorName:  'Lapis Blue'},
+                {colorCode:  '#151B8D',colorName:  'Denim Dark Blue'},{colorCode:  '#0000A0',colorName:  'Earth Blue'},{colorCode:  '#0020C2',colorName:  'Cobalt Blue'},
+                {colorCode:  '#0041C2',colorName:  'Blueberry Blue'},{colorCode:  '#2554C7',colorName:  'Sapphire Blue'},{colorCode:  '#1569C7',colorName:  'Blue Eyes'},
+                {colorCode:  '#2B60DE',colorName:  'Royal Blue'},{colorCode:  '#1F45FC',colorName:  'Blue Orchid'},{colorCode:  '#6960EC',colorName:  'Blue Lotus'},
+                {colorCode:  '#736AFF',colorName:  'Light Slate Blue'},{colorCode:  '#357EC7',colorName:  'Windows Blue'},{colorCode:  '#368BC1',colorName:  'Glacial Blue Ice'},
+                {colorCode:  '#488AC7',colorName:  'Silk Blue'},{colorCode:  '#3090C7',colorName:  'Blue Ivy'},{colorCode:  '#659EC7',colorName:  'Blue Koi'},
+                {colorCode:  '#87AFC7',colorName:  'Columbia Blue'},{colorCode:  '#95B9C7',colorName:  'Baby Blue'},{colorCode:  '#728FCE',colorName:  'Light Steel Blue'},
+                {colorCode:  '#2B65EC',colorName:  'Ocean Blue'},{colorCode:  '#306EFF',colorName:  'Blue Ribbon'},{colorCode:  '#157DEC',colorName:  'Blue Dress'},
+                {colorCode:  '#1589FF',colorName:  'Dodger Blue'},{colorCode:  '#6495ED',colorName:  'Cornflower Blue'},{colorCode:  '#6698FF',colorName:  'Sky Blue'},
+                {colorCode:  '#38ACEC',colorName:  'Butterfly Blue'},{colorCode:  '#56A5EC',colorName:  'Iceberg'},{colorCode:  '#5CB3FF',colorName:  'Crystal Blue'},
+                {colorCode:  '#3BB9FF',colorName:  'Deep Sky Blue'},{colorCode:  '#79BAEC',colorName:  'Denim Blue'},{colorCode:  '#82CAFA',colorName:  'Light Sky Blue'},
+                {colorCode:  '#82CAFF',colorName:  'Day Sky Blue'},{colorCode:  '#A0CFEC',colorName:  'Jeans Blue'},{colorCode:  '#B7CEEC',colorName:  'Blue Angel'},
+                {colorCode:  '#B4CFEC',colorName:  'Pastel Blue'},{colorCode:  '#C2DFFF',colorName:  'Sea Blue'},{colorCode:  '#C6DEFF',colorName:  'Powder Blue'},
+                {colorCode:  '#AFDCEC',colorName:  'Coral Blue'},{colorCode:  '#ADDFFF',colorName:  'Light Blue'},{colorCode:  '#BDEDFF',colorName:  'Robin Egg Blue'},
+                {colorCode:  '#CFECEC',colorName:  'Pale Blue Lily'},{colorCode:  '#E0FFFF',colorName:  'Light Cyan'},{colorCode:  '#EBF4FA',colorName:  'Water'},
+                {colorCode:  '#F0F8FF',colorName:  'AliceBlue'},{colorCode:  '#F0FFFF',colorName:  'Azure'},{colorCode:  '#CCFFFF',colorName:  'Light Slate'},
+                {colorCode:  '#93FFE8',colorName:  'Light Aquamarine'},{colorCode:  '#9AFEFF',colorName:  'Electric Blue'},{colorCode:  '#7FFFD4',colorName:  'Aquamarine'},
+                {colorCode:  '#00FFFF',colorName:  'Cyan or Aqua'},{colorCode:  '#7DFDFE',colorName:  'Tron Blue'},{colorCode:  '#57FEFF',colorName:  'Blue Zircon'},
+                {colorCode:  '#8EEBEC',colorName:  'Blue Lagoon'},{colorCode:  '#50EBEC',colorName:  'Celeste'},{colorCode:  '#4EE2EC',colorName:  'Blue Diamond'},
+                {colorCode:  '#81D8D0',colorName:  'Tiffany Blue'},{colorCode:  '#92C7C7',colorName:  'Cyan Opaque'},{colorCode:  '#77BFC7',colorName:  'Blue Hosta'},
+                {colorCode:  '#78C7C7',colorName:  'Northern Lights Blue'},{colorCode:  '#48CCCD',colorName:  'Medium Turquoise'},{colorCode:  '#43C6DB',colorName:  'Turquoise'},
+                {colorCode:  '#46C7C7',colorName:  'Jellyfish'},{colorCode:  '#7BCCB5',colorName:  'Blue green'},{colorCode:  '#43BFC7',colorName:  'Macaw Blue Green'},
+                {colorCode:  '#3EA99F',colorName:  'Light Sea Green'},{colorCode:  '#3B9C9C',colorName:  'Dark Turquoise'},{colorCode:  '#438D80',colorName:  'Sea Turtle Green'},
+                {colorCode:  '#348781',colorName:  'Medium Aquamarine'},{colorCode:  '#307D7E',colorName:  'Greenish Blue'},{colorCode:  '#5E7D7E',colorName:  'Grayish Turquoise'},
+                {colorCode:  '#4C787E',colorName:  'Beetle Green'},{colorCode:  '#008080',colorName:  'Teal'},{colorCode:  '#4E8975',colorName:  'Sea Green'},
+                {colorCode:  '#78866B',colorName:  'Camouflage Green'},{colorCode:  '#848b79',colorName:  'Sage Green'},{colorCode:  '#617C58',colorName:  'Hazel Green'},
+                {colorCode:  '#728C00',colorName:  'Venom Green'},{colorCode:  '#667C26',colorName:  'Fern Green'},{colorCode:  '#254117',colorName:  'Dark Forest Green'},
+                {colorCode:  '#306754',colorName:  'Medium Sea Green'},{colorCode:  '#347235',colorName:  'Medium Forest Green'},{colorCode:  '#437C17',colorName:  'Seaweed Green'},
+                {colorCode:  '#387C44',colorName:  'Pine Green'},{colorCode:  '#347C2C',colorName:  'Jungle Green'},{colorCode:  '#347C17',colorName:  'Shamrock Green'},
+                {colorCode:  '#348017',colorName:  'Medium Spring Green'},{colorCode:  '#4E9258',colorName:  'Forest Green'},{colorCode:  '#6AA121',colorName:  'Green Onion'},
+                {colorCode:  '#4AA02C',colorName:  'Spring Green'},{colorCode:  '#41A317',colorName:  'Lime Green'},{colorCode:  '#3EA055',colorName:  'Clover Green'},
+                {colorCode:  '#6CBB3C',colorName:  'Green Snake'},{colorCode:  '#6CC417',colorName:  'Alien Green'},{colorCode:  '#4CC417',colorName:  'Green Apple'},
+                {colorCode:  '#52D017',colorName:  'Yellow Green'},{colorCode:  '#4CC552',colorName:  'Kelly Green'},{colorCode:  '#54C571',colorName:  'Zombie Green'},
+                {colorCode:  '#99C68E',colorName:  'Frog Green'},{colorCode:  '#89C35C ',colorName:  'Green Peas'},{colorCode:  '#85BB65',colorName:  'Dollar Bill Green'},
+                {colorCode:  '#8BB381',colorName:  'Dark Sea Green'},{colorCode:  '#9CB071',colorName:  'Iguana Green'},{colorCode:  '#B2C248',colorName:  'Avocado Green'},
+                {colorCode:  '#9DC209',colorName:  'Pistachio Green'},{colorCode:  '#A1C935',colorName:  'Salad Green'},{colorCode:  '#7FE817',colorName:  'Hummingbird Green'},
+                {colorCode:  '#59E817',colorName:  'Nebula Green'},{colorCode:  '#57E964',colorName:  'Stoplight Go Green'},{colorCode:  '#64E986',colorName:  'Algae Green'},
+                {colorCode:  '#5EFB6E',colorName:  'Jade Green'},{colorCode:  '#00FF00',colorName:  'Green'},{colorCode:  '#5FFB17',colorName:  'Emerald Green'},
+                {colorCode:  '#87F717',colorName:  'Lawn Green'},{colorCode:  '#8AFB17',colorName:  'Chartreuse'},{colorCode:  '#6AFB92',colorName:  'Dragon Green'},
+                {colorCode:  '#98FF98',colorName:  'Mint green'},{colorCode:  '#B5EAAA',colorName:  'Green Thumb'},{colorCode:  '#C3FDB8',colorName:  'Light Jade'},
+                {colorCode:  '#CCFB5D',colorName:  'Tea Green'},{colorCode:  '#B1FB17',colorName:  'Green Yellow'},{colorCode:  '#BCE954',colorName:  'Slime Green'},
+                {colorCode:  '#EDDA74',colorName:  'Goldenrod'},{colorCode:  '#EDE275',colorName:  'Harvest Gold'},{colorCode:  '#FFE87C',colorName:  'Sun Yellow'},
+                {colorCode:  '#FFFF00',colorName:  'Yellow'},{colorCode:  '#FFF380',colorName:  'Corn Yellow'},{colorCode:  '#FFFFC2',colorName:  'Parchment'},
+                {colorCode:  '#FFFFCC',colorName:  'Cream'},{colorCode:  '#FFF8C6',colorName:  'Lemon Chiffon'},{colorCode:  '#FFF8DC',colorName:  'Cornsilk'},
+                {colorCode:  '#F5F5DC',colorName:  'Beige'},{colorCode:  '#FBF6D9',colorName:  'Blonde'},{colorCode:  '#FAEBD7',colorName:  'AntiqueWhite'},
+                {colorCode:  '#F7E7CE',colorName:  'Champagne'},{colorCode:  '#FFEBCD',colorName:  'BlanchedAlmond'},{colorCode:  '#F3E5AB',colorName:  'Vanilla'},
+                {colorCode:  '#ECE5B6',colorName:  'Tan Brown'},{colorCode:  '#FFE5B4',colorName:  'Peach'},{colorCode:  '#FFDB58',colorName:  'Mustard'},
+                {colorCode:  '#FFD801',colorName:  'Rubber Ducky Yellow'},{colorCode:  '#FDD017',colorName:  'Bright Gold'},{colorCode:  '#EAC117',colorName:  'Golden brown'},
+                {colorCode:  '#F2BB66',colorName:  'Macaroni and Cheese'},{colorCode:  '#FBB917',colorName:  'Saffron'},{colorCode:  '#FBB117',colorName:  'Beer'},
+                {colorCode:  '#FFA62F',colorName:  'Cantaloupe'},{colorCode:  '#E9AB17',colorName:  'Bee Yellow'},{colorCode:  '#E2A76F',colorName:  'Brown Sugar'},
+                {colorCode:  '#DEB887',colorName:  'BurlyWood'},{colorCode:  '#FFCBA4',colorName:  'Deep Peach'},{colorCode:  '#C9BE62',colorName:  'Ginger Brown'},
+                {colorCode:  '#E8A317',colorName:  'School Bus Yellow'},{colorCode:  '#EE9A4D',colorName:  'Sandy Brown'},{colorCode:  '#C8B560',colorName:  'Fall Leaf Brown'},
+                {colorCode:  '#D4A017',colorName:  'Orange Gold'},{colorCode:  '#C2B280',colorName:  'Sand'},{colorCode:  '#C7A317',colorName:  'Cookie Brown'},
+                {colorCode:  '#C68E17',colorName:  'Caramel'},{colorCode:  '#B5A642',colorName:  'Brass'},{colorCode:  '#ADA96E',colorName:  'Khaki'},
+                {colorCode:  '#C19A6B',colorName:  'Camel brown'},{colorCode:  '#CD7F32',colorName:  'Bronze'},{colorCode:  '#C88141',colorName:  'Tiger Orange'},
+                {colorCode:  '#C58917',colorName:  'Cinnamon'},{colorCode:  '#AF9B60',colorName:  'Bullet Shell'},{colorCode:  '#AF7817',colorName:  'Dark Goldenrod'},
+                {colorCode:  '#B87333',colorName:  'Copper'},{colorCode:  '#966F33',colorName:  'Wood'},{colorCode:  '#806517',colorName:  'Oak Brown'},
+                {colorCode:  '#827839',colorName:  'Moccasin'},{colorCode:  '#827B60',colorName:  'Army Brown'},{colorCode:  '#786D5F',colorName:  'Sandstone'},
+                {colorCode:  '#493D26',colorName:  'Mocha'},{colorCode:  '#483C32',colorName:  'Taupe'},{colorCode:  '#6F4E37',colorName:  'Coffee'},
+                {colorCode:  '#835C3B',colorName:  'Brown Bear'},{colorCode:  '#7F5217',colorName:  'Red Dirt'},{colorCode:  '#7F462C',colorName:  'Sepia'},
+                {colorCode:  '#C47451',colorName:  'Orange Salmon'},{colorCode:  '#C36241',colorName:  'Rust'},{colorCode:  '#C35817',colorName:  'Red Fox'},
+                {colorCode:  '#C85A17',colorName:  'Chocolate'},{colorCode:  '#CC6600',colorName:  'Sedona'},{colorCode:  '#E56717',colorName:  'Papaya Orange'},
+                {colorCode:  '#E66C2C',colorName:  'Halloween Orange'},{colorCode:  '#F87217',colorName:  'Pumpkin Orange'},{colorCode:  '#F87431',colorName:  'Construction Cone Orange'},
+                {colorCode:  '#E67451',colorName:  'Sunrise Orange'},{colorCode:  '#FF8040',colorName:  'Mango Orange'},{colorCode:  '#F88017',colorName:  'Dark Orange'},
+                {colorCode:  '#FF7F50',colorName:  'Coral'},{colorCode:  '#F88158',colorName:  'Basket Ball Orange'},{colorCode:  '#F9966B',colorName:  'Light Salmone'},
+                {colorCode:  '#E78A61',colorName:  'Tangerine'},{colorCode:  '#E18B6B',colorName:  'Dark Salmon'},{colorCode:  '#E77471',colorName:  'Light Coral'},
+                {colorCode:  '#F75D59',colorName:  'Bean Red'},{colorCode:  '#E55451',colorName:  'Valentine Red'},{colorCode:  '#E55B3C',colorName:  'Shocking Orange'},
+                {colorCode:  '#FF0000',colorName:  'Red'},{colorCode:  '#FF2400',colorName:  'Scarlet'},{colorCode:  '#F62217',colorName:  'Ruby Red'},
+                {colorCode:  '#F70D1A',colorName:  'Ferrari Red'},{colorCode:  '#F62817',colorName:  'Fire Engine Red'},{colorCode:  '#E42217',colorName:  'Lava Red'},
+                {colorCode:  '#E41B17',colorName:  'Love Red'},{colorCode:  '#DC381F',colorName:  'Grapefruit'},{colorCode:  '#C34A2C',colorName:  'Chestnut Red'},
+                {colorCode:  '#C24641',colorName:  'Cherry Red'},{colorCode:  '#C04000',colorName:  'Mahogany'},{colorCode:  '#C11B17',colorName:  'Chilli Pepper'},
+                {colorCode:  '#9F000F',colorName:  'Cranberry'},{colorCode:  '#990012',colorName:  'Red Wine'},{colorCode:  '#8C001A',colorName:  'Burgundy'},
+                {colorCode:  '#954535',colorName:  'Chestnut'},{colorCode:  '#7E3517',colorName:  'Blood Red'},{colorCode:  '#8A4117',colorName:  'Sienna'},
+                {colorCode:  '#7E3817',colorName:  'Sangria'},{colorCode:  '#800517',colorName:  'Firebrick'},{colorCode:  '#810541',colorName:  'Maroon'},
+                {colorCode:  '#7D0541',colorName:  'Plum Pie'},{colorCode:  '#7E354D',colorName:  'Velvet Maroon'},{colorCode:  '#7D0552',colorName:  'Plum Velvet'},
+                {colorCode:  '#7F4E52',colorName:  'Rosy Finch'},{colorCode:  '#7F5A58',colorName:  'Puce'},{colorCode:  '#7F525D',colorName:  'Dull Purple'},
+                {colorCode:  '#B38481',colorName:  'Rosy Brown'},{colorCode:  '#C5908E',colorName:  'Khaki Rose'},{colorCode:  '#C48189',colorName:  'Pink Bow'},
+                {colorCode:  '#C48793',colorName:  'Lipstick Pink'},{colorCode:  '#E8ADAA',colorName: 'Rose'},{colorCode:  '#ECC5C0',colorName:  'Rose Gold'},
+                {colorCode:  '#EDC9AF',colorName:  'Desert Sand'},{colorCode:  '#FDD7E4',colorName:  'Pig Pink'},{colorCode:  '#FCDFFF',colorName:  'Cotton Candy'},
+                {colorCode:  '#FFDFDD',colorName:  'Pink Bubble Gum'},{colorCode:  '#FBBBB9',colorName:  'Misty Rose'},{colorCode:  '#FAAFBE',colorName:  'Pink'},
+                {colorCode:  '#FAAFBA',colorName:  'Light Pink'},{colorCode:  '#F9A7B0',colorName:  'Flamingo Pink'},{colorCode:  '#E7A1B0',colorName:  'Pink Rose'},
+                {colorCode:  '#E799A3',colorName:  'Pink Daisy'},{colorCode:  '#E38AAE',colorName:  'Cadillac Pink'},{colorCode:  '#F778A1',colorName:  'Carnation Pink'},
+                {colorCode:  '#E56E94',colorName:  'Blush Red'},{colorCode:  '#F660AB',colorName:  'Hot Pink'},{colorCode:  '#FC6C85',colorName:  'Watermelon Pink'},
+                {colorCode:  '#F6358A',colorName:  'Violet Red'},{colorCode:  '#F52887',colorName:  'Deep Pink'},{colorCode:  '#E45E9D',colorName:  'Pink Cupcake'},
+                {colorCode:  '#E4287C',colorName:  'Pink Lemonade'},{colorCode: '#F535AA',colorName:  'Neon Pink'},{colorCode:  '#FF00FF',colorName:  'Magenta'},
+                {colorCode:  '#E3319D',colorName:  'Dimorphotheca Magenta'},{colorCode:  '#F433FF',colorName:  'Bright Neon Pink'},{colorCode:  '#D16587',colorName:  'Pale Violet Red'}
+            ]
+        }
+    },
+    computed: {
+        headerStyle() {
+            return{
+                fontSize: 12 + 'px'
+            }
+        },
+        qtnAreaText() {
+            return {
+                fontSize: 12 + 'px'
+            }
+        },
+        divTitles() {
+            return {
+                fontSize: 15 + 'px'
+            }
+        }
+    },
+    methods: {
+        changeQtnFont(params) {
+            this.$store.dispatch('updateQtnFont', params)
+        },
+        changeOptionFont(params) {
+            this.$store.dispatch('updateOptionFont', params)
+        },
+        changeTextColor(data) {
+            this.$store.dispatch('updateTextColor', data)
+        },
+        changeBgColor(data) {
+             this.$store.dispatch('updateBgColor', data)
+        }
+    }
+}
+</script>
+
+<style scoped>
+    #pageTitle {
+        padding-top: 50px;
+    }
+
+    .font-area, .bg-area{
+        width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+
+    .qtn-area {
+         width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+        margin-bottom: 50px;
+    }
+
+    .container {
+        position: relative;
+        max-height: 350px;
+        overflow: hidden;
+    }
+</style>
