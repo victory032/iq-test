@@ -6,7 +6,7 @@
            <v-text>Kindly attempt all questions! Goodluck...</v-text>
            <v-card class="mx-auto mt-5" v-for="(question, index) in questions" v-bind:key="question.id">
                <div v-show="index ===  indexValue">
-                        <v-card-title :style="qtnFont">
+                        <v-card-title :style="qtnFont + ';' + checkFont">
                             QUESTION {{ indexValue+1 }}:  {{ question.question }}
                         </v-card-title>
                         <v-card-text>
@@ -52,7 +52,8 @@ export default {
     data() {
         return {
            indexValue: 0,
-           isDisabled: false
+           isDisabled: false,
+           demo: ''
         }
     },
     computed: {
@@ -76,11 +77,16 @@ export default {
             return{
                 fontFamily: this.$store.getters.optionFont
             }
+        },
+        checkFont() {
+            return {
+                color: this.$store.getters.checkFont
+            }
         }
     },
     beforeMount() {
         if (localStorage.getItem('draftedQuestion')) {
-            console.log('Waiting for update signal')
+            this.demo = 'ok'
         } else {
             const __question = [
                 {

@@ -20,7 +20,7 @@
       </v-btn>
     </v-app-bar>
 
-    <v-content>
+    <v-content :style="checkFont">
       <router-view />
     </v-content>
       <Footer />
@@ -48,6 +48,11 @@ export default {
     checkMyBg() {
       return {
         background: this.$store.getters.checkBg
+      }
+    },
+    checkFont() {
+      return {
+        color: this.$store.getters.checkFont
       }
     }
   }

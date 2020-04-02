@@ -5,54 +5,47 @@
               <perfect-scrollbar class="container">
              <v-card-title :style="headerStyle">Restructure Design to your own taste...</v-card-title>
              <!-- design for users ability to Change font of question and title -->
-             <div class="font-area">
-                 <v-text :style="divTitles">Fonts</v-text>
-                 <v-divider />
-                 <v-select
-                    @change="changeQtnFont"
-                    item-value="fonts"
-                    item-text="fonts"
-                    :items="fonts"
-                    menu-props="auto"
-                    label="Change question font"
-                ></v-select>
-                 <v-select 
-                    label="Change Options font" 
-                    @change="changeOptionFont"
-                    item-value="fonts"
-                    item-text="fonts"
-                    :items="fonts"
-                    menu-props="auto"
-                 ></v-select>
-             </div>
+                    <div class="font-area">
+                        <v-text :style="divTitles">Fonts</v-text>
+                        <v-divider />
+                        <v-select
+                            @change="changeQtnFont"
+                            item-value="fonts"
+                            item-text="fonts"
+                            :items="fonts"
+                            menu-props="auto"
+                            label="Change question font"
+                        ></v-select>
+                        <v-select 
+                            label="Change Options font" 
+                            @change="changeOptionFont"
+                            item-value="fonts"
+                            item-text="fonts"
+                            :items="fonts"
+                            menu-props="auto"
+                        ></v-select>
+                    </div>
              <!-- design for users ability to Change background colors and effects -->
-             <div class="bg-area">
-                 <v-text :style="divTitles">Background</v-text>
-                 <v-divider />
-                 <v-select 
-                    label="Change Text Color" 
-                    @change="changeTextColor"
-                    item-value="colorCode"
-                    item-text="colorName"
-                    :items="colors"
-                    menu-props="auto"
-                 ></v-select>
-                <v-select 
-                    label="Change Background Color" 
-                    @change="changeBgColor"
-                    item-value="colorCode"
-                    item-text="colorName"
-                    :items="colors"
-                    menu-props="auto"
-                 ></v-select>
-             </div>
-              <!-- design for users ability to shuffle questions -->
-             <div class="qtn-area">
-                 <v-text :style="divTitles">Question</v-text>
-                 <v-spacer></v-spacer>
-                 <v-divider />
-                 <v-text :style="qtnAreaText">Shuffle Questions?</v-text>
-             </div>
+                    <div class="bg-area">
+                        <v-text :style="divTitles">Background</v-text>
+                        <v-divider />
+                        <v-select 
+                            label="Change Text Color" 
+                            @change="changeTextColor"
+                            item-value="colorCode"
+                            item-text="colorName"
+                            :items="colors"
+                            menu-props="auto"
+                        ></v-select>
+                        <v-select 
+                            label="Change Background Color" 
+                            @change="changeBgColor"
+                            item-value="colorCode"
+                            item-text="colorName"
+                            :items="colors"
+                            menu-props="auto"
+                        ></v-select>
+                    </div>
               </perfect-scrollbar>
          </v-card>
     </v-container>

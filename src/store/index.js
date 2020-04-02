@@ -8,10 +8,11 @@ export default new Vuex.Store({
     username: '',
     defaultScore : 0,  
     gottenQuestion : [],
-    btnRghtColor: '',
+    // btnRghtColor: '',
     qtnFont: '',
     optionFont: '',
-    bgColor: ''
+    bgColor: '',
+    textColor: ''
   },
   getters: {
     name(state) {
@@ -37,6 +38,9 @@ export default new Vuex.Store({
     },
     checkBg(state) {
       return state.bgColor
+    },
+    checkFont(state) {
+      return state.textColor
     }
   },
   mutations: {
@@ -68,6 +72,9 @@ export default new Vuex.Store({
     },
     updateBg: (state, payload) => {
       state.bgColor = payload
+    },
+    updateText: (state, payload) => {
+      state.textColor = payload
     }
   },
   actions: {
@@ -76,6 +83,22 @@ export default new Vuex.Store({
     },
     getQuestion: (context) => {
      const draftedQuestions = JSON.parse(localStorage.getItem('draftedQuestion'))
+     //function to shiffle question
+    //  function shuffle(params) {
+    //    var ctr = params.length, temp, index;
+    //    //while there are elements in the array
+    //    while (ctr > 0 ) {
+    //      //pick an index at random
+    //         index = Math.floor(Math.random() * ctr);
+    //      //Decrease  ctr by 1
+    //         ctr--;
+    //      //Swap the last element with it
+    //         temp = params[ctr];
+    //         params[ctr] = params[index];
+    //         params[index] = temp;
+    //    }
+    //    return params
+    //  }
     context.commit('getQuestions', draftedQuestions)
     },
     checkAnswer(context, params){
@@ -109,6 +132,9 @@ export default new Vuex.Store({
     },
     updateBgColor(context, data) {
       context.commit('updateBg', data)
+    },
+    updateTextColor(context, data) {
+      context.commit('updateText', data)
     }
   },
   modules: {
