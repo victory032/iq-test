@@ -203,9 +203,7 @@ export default {
         src: ['sound.mp3'],
             autoplay: true,
             html5: true,
-            format: 'mp3',
-            onload: function() { console.log('song loaded!')},
-            onloaderror: function(id, error) { console.log('loadError: ' + id +' - ' + error); }
+            format: 'mp3'
         });
         // Play the sound.
         sound.play();
