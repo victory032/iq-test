@@ -5,21 +5,35 @@
             <div class="alert alert-danger" v-if="nameIsEmpty">
                 Enter a name to begin
             </div>
-                <v-text-field placeholder="Yoo Smart Kid!!! Enter your name to begin test" v-model="name"></v-text-field>
+            <v-text-field placeholder="Yoo Smart Kid!!! Enter your name to begin test" v-model="name"></v-text-field>
                 <v-spacer></v-spacer>
                 <v-spacer></v-spacer>
-                <v-btn class="info" @click="startQuiz">Get Started</v-btn>
+            <v-btn class="info" @click="startQuiz">Get Started</v-btn>
         </div>
     </v-container>
 </template>
 
 <script>
+import { Howl } from 'howler'
 export default {
     data() {
         return {
             name: '',
             nameIsEmpty: false
         }
+    },
+    created() {
+         // Setup the new Howl.
+        const sound = new Howl({
+        src: ['sound1.mp3'],
+            autoplay: true,
+            html5: true,
+            format: 'mp3',
+            onload: function() { console.log('song loaded!')},
+            onloaderror: function(id, error) { console.log('loadError: ' + id +' - ' + error); }
+        });
+        // Play the sound.
+        sound.play();
     },
     methods: {
         startQuiz() {

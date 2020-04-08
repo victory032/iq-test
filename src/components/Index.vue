@@ -1,40 +1,40 @@
 <template>
     <v-container>
         <v-row>
-            <v-col cols="8">
+            <v-col cols="7" sm="8" md="6">
                  <div class="content-area">
-           <v-text>Kindly attempt all questions! Goodluck...</v-text>
-           <v-card class="mx-auto mt-5" v-for="(question, index) in questions" v-bind:key="question.id">
-               <div v-show="index ===  indexValue">
-                        <v-card-title :style="qtnFont + ';' + checkFont">
-                            QUESTION {{ indexValue+1 }}:  {{ question.question }}
-                        </v-card-title>
-                        <v-card-text>
+                    <v-text>Kindly attempt all questions! Goodluck...  <span id="demo">00:00</span></v-text>
+                    <v-card class="mx-auto mt-5" v-for="(question, index) in questions.details" v-bind:key="question.id">
+                        <div v-show="index ===  indexValue">
+                            <v-card-title :style="qtnFont">
+                                QUESTION {{ indexValue+1 }}:  {{ question.question }}
+                            </v-card-title>
+                            <v-card-text>
                                 <v-btn id="qtnBtn" :disabled="isDisabled" :style="optionFont" @click="checkAnswer(question.option_1)">{{ question.option_1 }}</v-btn>
                                 <v-btn id="qtnBtn"  :disabled="isDisabled" :style="optionFont" @click="checkAnswer(question.option_2)">{{ question.option_2 }}</v-btn>
-                        </v-card-text>
-                        <v-card-text>
+                            </v-card-text>
+                            <v-card-text>
                                 <v-btn id="qtnBtn"  :disabled="isDisabled" :style="optionFont" @click="checkAnswer(question.option_3)">{{ question.option_3 }}</v-btn>
                                 <v-btn id="qtnBtn"  :disabled="isDisabled" :style="optionFont" @click="checkAnswer(question.option_4)">{{ question.option_4 }}</v-btn>
-                        </v-card-text>
-                        <v-spacer></v-spacer>
-                        <v-card-actions>
-                            <v-spacer></v-spacer>
+                            </v-card-text>
+                                <v-spacer></v-spacer>
+                            <v-card-actions>
+                                <v-spacer></v-spacer>
                                 <!-- <v-btn class="warning" v-if="indexValue > 0" @click="getPrevQtn">
                                     Prev
                                 </v-btn> -->
                                 <v-btn class="primary" @click="getNextQtn">
-                                        Next
+                                    Next
                                 </v-btn>
-                        </v-card-actions>
-               </div>
-           </v-card>
-           <div v-show="indexValue === questions.length">
-                   <h1 id="score-board">You scored {{ score }} marks in total</h1>
-            </div>
-       </div>
+                            </v-card-actions>
+                        </div>
+                    </v-card>
+                    <div v-show="indexValue === questions.details.length">
+                            <h1 id="score-board">You scored {{ score }} marks in total</h1>
+                        </div>
+                </div>
             </v-col>
-            <v-col cls="4">
+            <v-col cols="5" sm="4">
                 <div class="content-area2">
                     <appSettings />
                 </div>
@@ -45,6 +45,7 @@
 
 <script>
 import appSettings from '../components/Settings'
+import { Howl } from 'howler'
 export default {
     components: {
         appSettings
@@ -58,7 +59,10 @@ export default {
     },
     computed: {
         questions () {
-            return this.$store.getters.questions
+            return {
+               details:  this.$store.getters.questions,
+               
+            }
         },
         score () {
             return this.$store.getters.score
@@ -193,8 +197,36 @@ export default {
             localStorage.setItem('draftedQuestion',pasteQtn)
         }
     },
-    mounted() {
+    created() {
+        // Setup the new Howl.
+        const sound = new Howl({
+        src: ['sound.mp3'],
+            autoplay: true,
+            html5: true,
+            format: 'mp3',
+            onload: function() { console.log('song loaded!')},
+            onloaderror: function(id, error) { console.log('loadError: ' + id +' - ' + error); }
+        });
+        // Play the sound.
+        sound.play();
+    },
+    mounted() { 
         this.$store.dispatch('getQuestion')
+        function showNextQtn() {
+            this.indexValue++
+        }
+        var countDownTime = 7
+             var x = setInterval(function() {
+                if (countDownTime <= 0) {
+                    clearInterval(x);
+                    showNextQtn();
+                    //  console.log('Time Finished')
+                    // document.getElementById("demo").innerHTML = "Expired";
+                } else {
+                    document.getElementById("demo").innerHTML = "00:0" + countDownTime + "s";
+                }
+                countDownTime -= 1;
+            }, 1000)
     },
     methods: {
         checkAnswer(params) {
@@ -207,7 +239,7 @@ export default {
         },
         getNextQtn() {
             this.indexValue++
-             this.isDisabled = false;
+            this.isDisabled = false;
         }
     }
 }

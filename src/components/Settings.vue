@@ -2,9 +2,9 @@
     <v-container>
          <!-- <v-text>Background and theme settings</v-text> -->
          <v-card>
-              <perfect-scrollbar class="container">
-             <v-card-title :style="headerStyle">Restructure Design to your own taste...</v-card-title>
-             <!-- design for users ability to Change font of question and title -->
+            <perfect-scrollbar class="container">
+                <v-card-title :style="headerStyle">Restructure Design to your own taste...</v-card-title>
+                    <!-- design for users ability to Change font of question and title -->
                     <div class="font-area">
                         <v-text :style="divTitles">Fonts</v-text>
                         <v-divider />
@@ -25,7 +25,7 @@
                             menu-props="auto"
                         ></v-select>
                     </div>
-             <!-- design for users ability to Change background colors and effects -->
+                    <!-- design for users ability to Change background colors and effects -->
                     <div class="bg-area">
                         <v-text :style="divTitles">Background</v-text>
                         <v-divider />
